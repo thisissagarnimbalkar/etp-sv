@@ -51,7 +51,7 @@ public class UserController {
             // Update fields
             existingUser.setName(updatedUser.getName());
             existingUser.setEmail(updatedUser.getEmail());
-            existingUser.setPhoneno(updatedUser.getPhoneno());
+            existingUser.setPhoneNumber(updatedUser.getPhoneNumber());
             existingUser.setPassword(updatedUser.getPassword());
 
             User updatedSavedUser = userService.createUser(existingUser); // Re-saving the updated user
