@@ -1,5 +1,7 @@
 package com.etp.app.repository;
 
+import java.util.Optional;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -10,5 +12,7 @@ public interface UserRepository extends JpaRepository<User, Integer> {
     
     // You can define custom query methods here if needed
     User findByEmail(String email); // Example of a custom query method
-
+    
+    Optional<User> findByPhoneNumber(String phoneNumber);
+    
 }

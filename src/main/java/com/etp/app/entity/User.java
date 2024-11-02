@@ -11,7 +11,13 @@ import jakarta.persistence.Table;
 @Table(name = "users")
 public class User {
 
-    @Id
+    @Override
+	public String toString() {
+		return "User [id=" + id + ", name=" + name + ", phoneNumber=" + phoneNumber + ", email=" + email + ", password="
+				+ password + "]";
+	}
+
+	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id; // Unique user ID
 
