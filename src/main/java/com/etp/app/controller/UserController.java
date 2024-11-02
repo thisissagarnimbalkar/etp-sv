@@ -7,7 +7,10 @@ import org.springframework.web.bind.annotation.*;
 
 import com.etp.app.entity.User;
 import com.etp.app.service.UserService;
+import com.etp.app.util.JwtUtils;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Optional;
 
 @RestController
@@ -17,12 +20,19 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+    
+    @Autowired
+    private JwtUtils jwtUtils;
 
     // Save a new user
     @PostMapping("/create")
-    public ResponseEntity<User> createUser(@RequestBody User user) {
+    public ResponseEntity<Map<String, String>> createUser(@RequestBody User user) {
         User savedUser = userService.createUser(user);
-        return new ResponseEntity<>(savedUser, HttpStatus.CREATED);
+        String token = jwtUtils.generateJwtToken(savedUser.getPhoneNumber());
+        
+        Map<String, String> response = new HashMap<>();
+        response.put("token", token);
+        return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
 
     // Get user by ID
